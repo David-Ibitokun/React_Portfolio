@@ -1,6 +1,9 @@
 import React from 'react'
 import Profile from '../assets/images/profile1.jpg'
 
+
+
+
 export default function about() {
 return (
     <div>
