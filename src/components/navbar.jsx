@@ -41,10 +41,10 @@ function Navbar() {
   </div>  
 
   <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal px-1">
-      <Link className="text font-bold" to="home" smooth={true} duration={500} > <li><a>Home</a></li> </Link>
-      <Link className="text-1.6xl font-bold" to="about" smooth={true} duration={500} > <li><a>About</a></li> </Link>
-      <Link className="text-1.6xl font-bold" to="contact" smooth={true} duration={500} > <li><a>Contact</a></li> </Link>
+    <ul className="menu menu-horizontal px-1 text-[16.5px]">
+      <Link className="font-bold" to="home" smooth={true} duration={500} > <li><a>Home</a></li> </Link>
+      <Link className="font-bold" to="about" smooth={true} duration={500} > <li><a>About</a></li> </Link>
+      <Link className="font-bold" to="contact" smooth={true} duration={500} > <li><a>Contact</a></li> </Link>
     </ul>
   </div>
     <div className="navbar-end">
