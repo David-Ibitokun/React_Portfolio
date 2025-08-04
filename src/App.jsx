@@ -7,6 +7,7 @@ import Home from './pages/home.jsx'
 import Footer from './components/footer.jsx'
 import About from './pages/about.jsx'
 import Contact from './pages/contact.jsx'
+import Skills from './pages/skills.jsx'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -15,6 +16,7 @@ function App() {
       <Navbar />
       <Home/>
       <About/>
+      {/* <Skills/> */}
       <Contact/>
       <Footer />
     </>
