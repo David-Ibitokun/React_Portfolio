@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -8,8 +8,14 @@ import Footer from './components/footer.jsx'
 import About from './pages/about.jsx'
 import Contact from './pages/contact.jsx'
 import Skills from './pages/skills.jsx'
+import 'preline/preline';
+
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    window.HSStaticMethods.autoInit();
+  }, []);
 
   return (
     <>
