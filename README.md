@@ -9,9 +9,8 @@ Welcome to my personal portfolio website! This project showcases my work, skills
 ## 🛠️ Tech Stack
 
 - **Frontend**: HTML5, CSS3, JavaScript
-- **Frameworks/Libraries**: React / Bootstrap / Tailwind CSS *(use the one(s) you used)*
-- **Backend** (optional): Django / Node.js / Express *(if applicable)*
-- **Hosting**: GitHub Pages / Netlify / Vercel / Render *(choose the one you used)*
+- **Frameworks/Libraries**: React / Bootstrap / Tailwind CSS 
+- **Hosting**:  Vercel
 
 ## 📁 Features
 
