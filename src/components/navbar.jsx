@@ -40,7 +40,7 @@ function Navbar() {
         
         <Link className="cursor-pointer" to="home" smooth={true} duration={500} > <a>Home</a> </Link>
         <Link className="cursor-pointer" to="about" smooth={true} duration={500} > <a>About</a> </Link>
-        {/* <Link className="cursor-pointer" to="skills" smooth={true} duration={500} >  <a>Skills</a> </Link> */}
+        <Link className="cursor-pointer" to="skills" smooth={true} duration={500} >  <a>Skills</a> </Link>
         <Link className="cursor-pointer" to="contact" smooth={true} duration={500} > <a>Contact</a> </Link>
       </div>
     </div>

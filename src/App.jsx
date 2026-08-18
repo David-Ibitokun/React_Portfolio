@@ -22,7 +22,7 @@ function App() {
       <Navbar />
       <Home/>
       <About/>
-      {/* <Skills/> */}
+      <Skills/>
       <Contact/>
       <Footer />
     </>

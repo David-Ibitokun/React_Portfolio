@@ -1,5 +1,5 @@
 import React from 'react'
-import Profile from '../assets/images/profile1.jpg'
+import Profile from '../assets/images/profile_pic_1.webp'
 
 
 
