@@ -8,6 +8,7 @@ import Footer from './components/footer.jsx'
 import About from './pages/about.jsx'
 import Contact from './pages/contact.jsx'
 import Skills from './pages/skills.jsx'
+import Projects from './pages/projects.jsx'
 import 'preline/preline';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Home/>
       <About/>
       <Skills/>
+      <Projects/>
       <Contact/>
       <Footer />
     </>
