@@ -104,7 +104,7 @@ function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link
+            {/* <Link
               to="resume"
               smooth={true}
               duration={500}
@@ -112,7 +112,7 @@ function Navbar() {
               className="mt-2 rounded bg-primary-container px-4 py-2 text-center font-code text-sm font-bold text-on-primary"
             >
               RESUME
-            </Link>
+            </Link> */}
           </div>
         </div>
       )}
