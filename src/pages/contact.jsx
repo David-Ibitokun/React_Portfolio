@@ -61,7 +61,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      // className="border-t border-outline-variant/30 px-5 py-24 md:px-6"
+      className="px-5 py-24 md:px-6"
     >
       <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-8 lg:grid-cols-2">
         <AnimatedSection animation="fade-right" className="flex flex-col">
