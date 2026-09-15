@@ -1,56 +1,123 @@
-import React, { useEffect, useState } from "react";
-import {Link} from 'react-scroll';
+import { useState, useEffect, useMemo } from 'react';
+import { Link } from 'react-scroll';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 function Navbar() {
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
-    
-    const handleToggle = (e) => {
-        if(e.target.checked){
-            setTheme("synthwave");
-        } else {
-            setTheme("dark");
-        } 
-    }
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState('home');
 
-    //const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
-     useEffect(() => {
-        localStorage.setItem("theme", theme);
-        const localTheme = localStorage.getItem("theme");
-        document.querySelector("html").setAttribute("data-theme", localTheme);
-     },[theme])
-    return (
-        <>
-        
-<header className="flex fixed top-0 z-100 flex-wrap sm:justify-start sm:flex-nowrap w-full bg-white text-sm py-3 dark:bg-neutral-900">
-      <nav className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between">
-    <div className="flex items-center justify-between">
-      <a className="flex-none text-xl font-bold dark:text-white focus:outline-hidden focus:opacity-80" href="#" aria-label="Brand">
-        David 
-      </a>
-      <div className="sm:hidden">
-        <button type="button" className="hs-collapse-toggle relative size-9 flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:border-neutral-700 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10" id="hs-navbar-example-collapse" aria-expanded="false" aria-controls="hs-navbar-example" aria-label="Toggle navigation" data-hs-collapse="#hs-navbar-example">
-          <svg className="hs-collapse-open:hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
-          <svg className="hs-collapse-open:block hidden shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-          <span className="sr-only">Toggle navigation</span>
+  const navLinks = useMemo(
+    () => [
+      { id: 'home', label: 'Home' },
+      { id: 'about', label: 'About' },
+      { id: 'skills', label: 'Skills' },
+      // { id: 'resume', label: 'Resume' },
+      { id: 'projects', label: 'Projects' },
+      { id: 'contact', label: 'Contact' },
+    ],
+    []
+  );
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navLinks.map((link) => document.getElementById(link.id));
+      const scrollPosition = window.scrollY + 200;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveLink(navLinks[i].id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [navLinks]);
+
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-outline-variant/30 bg-surface/80 backdrop-blur-xl">
+      <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-5 md:px-6">
+        <a
+          href="#home"
+          className="font-headline text-xl font-bold tracking-tighter text-on-surface"
+        >
+          DAVID
+        </a>
+
+        <div className="hidden items-center gap-8 md:flex">
+          {navLinks.map((link) => (
+            <Link
+              key={link.id}
+              to={link.id}
+              smooth={true}
+              duration={500}
+              spy={true}
+              onSetActive={() => setActiveLink(link.id)}
+              className={`font-code text-sm tracking-wide transition-colors duration-200 cursor-pointer ${
+                activeLink === link.id
+                  ? 'border-b-2 border-primary-container font-bold text-primary-container'
+                  : 'text-on-surface-variant hover:text-primary-container'
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+
+        {/* <Link
+          to="resume"
+          smooth={true}
+          duration={500}
+          className="hidden cursor-pointer rounded bg-primary-container px-4 py-2 font-code text-sm font-bold text-on-primary transition-all hover:brightness-110 md:block"
+        >
+          RESUME
+        </Link> */}
+
+        <button
+          className="text-on-surface md:hidden"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle navigation"
+        >
+          {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
         </button>
       </div>
-    </div>
-    <div id="hs-navbar-example" className="max-w-fit hidden hs-collapse overflow-hidden transition-all duration-300 basis-full grow sm:block" aria-labelledby="hs-navbar-example-collapse">
-      <div className="mr-1 flex font-bold flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-center sm:mt-0 sm:ps-5">
-        
-        <Link className="cursor-pointer" to="home" smooth={true} duration={500} > <a>Home</a> </Link>
-        <Link className="cursor-pointer" to="about" smooth={true} duration={500} > <a>About</a> </Link>
-        <Link className="cursor-pointer" to="skills" smooth={true} duration={500} >  <a>Skills</a> </Link>
-        <Link className="cursor-pointer" to="projects" smooth={true} duration={500} > <a>Projects</a> </Link>
-        <Link className="cursor-pointer" to="contact" smooth={true} duration={500} > <a>Contact</a> </Link>
-      </div>
-    </div>
-  </nav>
-</header>
 
+      {isOpen && (
+        <div className="border-t border-outline-variant/30 bg-surface/95 px-5 py-4 backdrop-blur-xl md:hidden">
+          <div className="flex flex-col gap-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.id}
+                to={link.id}
+                smooth={true}
+                duration={500}
+                spy={true}
+                onClick={() => setIsOpen(false)}
+                className={`font-code text-sm tracking-wide transition-colors duration-200 ${
+                  activeLink === link.id
+                    ? 'font-bold text-primary-container'
+                    : 'text-on-surface-variant hover:text-primary-container'
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              to="resume"
+              smooth={true}
+              duration={500}
+              onClick={() => setIsOpen(false)}
+              className="mt-2 rounded bg-primary-container px-4 py-2 text-center font-code text-sm font-bold text-on-primary"
+            >
+              RESUME
+            </Link>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+}
 
-
-        </>
-
-    );
-} export default Navbar; 
+export default Navbar;

@@ -1,71 +1,96 @@
-import React from 'react'
-import SumiaPreview from '../assets/images/Sumia_Preview.webp'
-import TcnMlpPreview from '../assets/images/TCN_MLP_Preview.webp'
+import SumiaPreview from '../assets/images/Sumia_Preview.webp';
+import TcnMlpPreview from '../assets/images/TCN_MLP_Preview.webp';
+import { FiCode } from 'react-icons/fi';
+import AnimatedSection from '../effects/AnimatedSection.jsx';
+import TiltCard from '../effects/TiltCard.jsx';
 
-export default function projects() {
-    const projects = [
-        {
-            name: 'Sumia E-Commerce Website',
-            description:
-                'A live e-commerce website for browsing products and exploring a modern shopping experience.',
-            url: 'https://davidibitokun.pythonanywhere.com/',
-            image: SumiaPreview,
-        },
-        {
-            name: 'AI Crop-Climate Prediction and Evaluation',
-            description:
-                'An AI-powered crop and climate prediction app built with TCN-MLP for data-driven agricultural insights.',
-            url: 'https://nig-climate-with-dl.streamlit.app/',
-            image: TcnMlpPreview,
-        },
-    ]
+export default function Projects() {
+  const projects = [
+    {
+      name: 'E-Commerce Core API',
+      description:
+        'A robust backend architecture for an e-commerce platform featuring secure user authentication, inventory management, and payment processing integration.',
+      url: 'https://davidibitokun.pythonanywhere.com/',
+      image: SumiaPreview,
+      tags: ['Django', 'PostgreSQL', 'REST API'],
+    },
+    {
+      name: 'AI Crop-Climate Prediction and Evaluation',
+      description:
+        'A machine learning-based application for predicting and evaluating crop yields based on climate data.',
+      url: 'https://nig-climate-with-dl.streamlit.app/',
+      image: TcnMlpPreview,
+      tags: ['React', 'Django', 'JWT'],
+    },
+  ];
 
-    return (
-        <div>
-            <section id="projects" className="min-h-screen px-6 py-16">
-                <div className="mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center gap-10">
-                    <div className="text-center">
-                        <h1 className="text-5xl font-bold">Projects</h1>
-                        <p className="mx-auto mt-4 max-w-2xl text-base opacity-80">
-                            Selected live projects showcasing web development and applied AI work.
-                        </p>
+  return (
+    <section id="projects" className="px-5 py-24 md:px-6">
+      <div className="mx-auto max-w-[1200px]">
+        <AnimatedSection animation="fade-up" className="mb-8">
+          <span className="font-code text-sm text-primary-container">
+            04 // DEPLOYMENTS
+          </span>
+          <h2 className="mt-2 font-headline text-4xl text-on-surface">
+            System Architecture & Projects
+          </h2>
+        </AnimatedSection>
+
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          {projects.map((project, index) => (
+            <AnimatedSection key={project.name} animation="fade-up" delay={index * 150}>
+              <TiltCard className="h-full">
+                <article className="group h-full overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-low transition-all duration-300 hover:border-primary-container/50 hover:shadow-[0_0_30px_rgba(0,240,255,0.1)]">
+                  <div className="relative h-64 overflow-hidden border-b border-outline-variant bg-surface-dim">
+                    <img
+                      src={project.image}
+                      alt={project.name}
+                      className="h-full w-full object-cover opacity-60 transition-all duration-500 group-hover:scale-105 group-hover:opacity-100"
+                    />
+                    <div className="absolute top-4 right-4 flex items-center gap-2 rounded border border-outline-variant bg-surface/90 px-3 py-1 font-code text-xs text-primary-container backdrop-blur transition-all group-hover:bg-primary-container/10">
+                      <div className="h-2 w-2 animate-pulse rounded-full bg-primary-container" />
+                      STATUS: DEPLOYED
+                    </div>
+                  </div>
+
+                  <div className="p-6">
+                    <div className="mb-4 flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded bg-surface-variant px-2 py-1 font-code text-xs text-on-surface-variant transition-all hover:bg-primary-container/10 hover:text-primary-container"
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
 
-                    <div className="grid w-full gap-6 md:grid-cols-2">
-                        {projects.map((project) => (
-                            <article
-                                key={project.name}
-                                className="group relative min-h-[380px] overflow-hidden rounded-2xl border border-base-300 bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1"
-                                style={{
-                                    backgroundImage: `url(${project.image})`,
-                                    backgroundSize: 'cover',
-                                    backgroundPosition: 'center',
-                                }}
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/10" />
-                                <div className="relative flex h-full min-h-[380px] flex-col justify-end p-6 text-white">
-                                    <h2 className="text-2xl font-semibold drop-shadow-lg">{project.name}</h2>
-                                    <p className="mt-3 leading-7 text-white/90 drop-shadow-md">{project.description}</p>
-                                    <a
-                                        href={project.url}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className="btn btn-primary mt-6 w-fit"
-                                    >
-                                        Visit Project
-                                    </a>
-                                </div>
-                            </article>
-                        ))}
-                    </div>
+                    <h3 className="font-headline text-2xl text-on-surface transition-colors group-hover:text-primary-container">
+                      {project.name}
+                    </h3>
+                    <p className="mt-2 text-base text-on-surface-variant">
+                      {project.description}
+                    </p>
 
-                    <div className="text-center">
-                        <p className="max-w-2xl leading-7 opacity-80">
-                            Open to collaboration, product ideas, and new opportunities in web and AI development.
-                        </p>
-                    </div>
-                </div>
-            </section>
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group/link mt-6 inline-flex items-center gap-1 font-code text-sm text-primary-container"
+                    >
+                      <FiCode size={18} />
+                      <span className="relative">
+                        View Project
+                        <span className="absolute bottom-0 left-0 h-px w-0 bg-primary-container transition-all duration-300 group-hover/link:w-full" />
+                      </span>
+                    </a>
+                  </div>
+                </article>
+              </TiltCard>
+            </AnimatedSection>
+          ))}
         </div>
-    )
+      </div>
+    </section>
+  );
 }

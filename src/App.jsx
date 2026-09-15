@@ -1,34 +1,29 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Navbar from './components/navbar.jsx'
-import Home from './pages/home.jsx'
-import Footer from './components/footer.jsx'
-import About from './pages/about.jsx'
-import Contact from './pages/contact.jsx'
-import Skills from './pages/skills.jsx'
-import Projects from './pages/projects.jsx'
-import 'preline/preline';
+import Navbar from './components/navbar.jsx';
+import Home from './pages/home.jsx';
+import Footer from './components/footer.jsx';
+import About from './pages/about.jsx';
+import Contact from './pages/contact.jsx';
+import Skills from './pages/skills.jsx';
+import Projects from './pages/projects.jsx';
+import Resume from './pages/resume.jsx';
+import CursorGlow from './effects/CursorGlow.jsx';
 
 function App() {
-  // const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    window.HSStaticMethods.autoInit();
-  }, []);
-
   return (
-    <>
+    <div className="min-h-screen bg-background text-on-surface grid-pattern">
+      <CursorGlow />
       <Navbar />
-      <Home/>
-      <About/>
-      <Skills/>
-      <Projects/>
-      <Contact/>
+      <main>
+        <Home />
+        <About />
+        <Skills />
+        {/* <Resume /> */}
+        <Projects />
+        <Contact />
+      </main>
       <Footer />
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
