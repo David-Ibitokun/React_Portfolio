@@ -1,10 +1,12 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-scroll';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiX, FiSun, FiMoon } from 'react-icons/fi';
+import { useTheme } from '../hooks/useTheme.js';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('home');
+  const { theme, toggleTheme } = useTheme();
 
   const navLinks = useMemo(
     () => [
@@ -66,6 +68,15 @@ function Navbar() {
           ))}
         </div>
 
+        <button
+          type="button"
+          onClick={toggleTheme}
+          aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          className="hidden rounded-full border border-outline-variant/50 bg-surface-container-low/50 p-2 text-on-surface transition-all hover:border-primary-container hover:text-primary-container md:block"
+        >
+          {theme === 'dark' ? <FiSun size={20} /> : <FiMoon size={20} />}
+        </button>
+
         {/* <Link
           to="resume"
           smooth={true}
@@ -87,6 +98,18 @@ function Navbar() {
       {isOpen && (
         <div className="border-t border-outline-variant/30 bg-surface/95 px-5 py-4 backdrop-blur-xl md:hidden">
           <div className="flex flex-col gap-4">
+            <button
+              type="button"
+              onClick={() => {
+                toggleTheme();
+                setIsOpen(false);
+              }}
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="flex items-center gap-2 font-code text-sm text-on-surface transition-colors hover:text-primary-container"
+            >
+              {theme === 'dark' ? <FiSun size={18} /> : <FiMoon size={18} />}
+              {theme === 'dark' ? 'Light mode' : 'Dark mode'}
+            </button>
             {navLinks.map((link) => (
               <Link
                 key={link.id}

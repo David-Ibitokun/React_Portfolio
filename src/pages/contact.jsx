@@ -5,6 +5,14 @@ import { FiMail, FiMapPin } from 'react-icons/fi';
 import AnimatedSection from '../effects/AnimatedSection.jsx';
 import TiltCard from '../effects/TiltCard.jsx';
 
+function getSwalTheme() {
+  const style = getComputedStyle(document.documentElement);
+  return {
+    background: style.getPropertyValue('--color-surface-container').trim() || '#101415',
+    color: style.getPropertyValue('--color-on-surface').trim() || '#e0e3e5',
+  };
+}
+
 export default function Contact() {
   const form = useRef();
   const [isSending, setIsSending] = useState(false);
@@ -18,8 +26,7 @@ export default function Contact() {
         title: 'Configuration Error',
         text: 'EmailJS public key is missing. Please check your .env file.',
         icon: 'error',
-        background: '#101415',
-        color: '#e0e3e5',
+        ...getSwalTheme(),
       });
       return;
     }
@@ -37,8 +44,7 @@ export default function Contact() {
             title: 'Message Sent!',
             text: 'Your message has been transmitted successfully.',
             icon: 'success',
-            background: '#101415',
-            color: '#e0e3e5',
+            ...getSwalTheme(),
           });
           form.current.reset();
         },
@@ -50,8 +56,7 @@ export default function Contact() {
               error.text ||
               'Something went wrong while sending your message. Please try again.',
             icon: 'error',
-            background: '#101415',
-            color: '#e0e3e5',
+            ...getSwalTheme(),
           });
           console.error('EmailJS FAILED...', error);
         }
