@@ -11,7 +11,7 @@ function Navbar() {
       { id: 'home', label: 'Home' },
       { id: 'about', label: 'About' },
       { id: 'skills', label: 'Skills' },
-      // { id: 'resume', label: 'Resume' },
+      { id: 'resume', label: 'Resume' },
       { id: 'projects', label: 'Projects' },
       { id: 'contact', label: 'Contact' },
     ],

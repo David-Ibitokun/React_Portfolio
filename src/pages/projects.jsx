@@ -7,7 +7,7 @@ import TiltCard from '../effects/TiltCard.jsx';
 export default function Projects() {
   const projects = [
     {
-      name: 'E-Commerce Core API',
+      name: 'E-Commerce',
       description:
         'A robust backend architecture for an e-commerce platform featuring secure user authentication, inventory management.',
       url: 'https://davidibitokun.pythonanywhere.com/',
@@ -32,7 +32,7 @@ export default function Projects() {
             04 // DEPLOYMENTS
           </span>
           <h2 className="mt-2 font-headline text-4xl text-on-surface">
-            System Architecture & Projects
+            Projects
           </h2>
         </AnimatedSection>
 
