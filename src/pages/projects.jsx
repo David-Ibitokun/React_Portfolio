@@ -9,18 +9,18 @@ export default function Projects() {
     {
       name: 'E-Commerce Core API',
       description:
-        'A robust backend architecture for an e-commerce platform featuring secure user authentication, inventory management, and payment processing integration.',
+        'A robust backend architecture for an e-commerce platform featuring secure user authentication, inventory management.',
       url: 'https://davidibitokun.pythonanywhere.com/',
       image: SumiaPreview,
-      tags: ['Django', 'PostgreSQL', 'REST API'],
+      tags: ['Django', 'SQLlite'],
     },
     {
       name: 'AI Crop-Climate Prediction and Evaluation',
       description:
-        'A machine learning-based application for predicting and evaluating crop yields based on climate data.',
+        'A deep learning-based application for predicting and evaluating crop yields based on Nigeria 6 geographical region and climate data.',
       url: 'https://nig-climate-with-dl.streamlit.app/',
       image: TcnMlpPreview,
-      tags: ['React', 'Django', 'JWT'],
+      tags: ['Streamlit', 'Python', 'Tensorflow/Keras'],
     },
   ];
 
