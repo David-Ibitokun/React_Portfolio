@@ -1,12 +1,16 @@
-import { useState, useEffect, useMemo } from 'react';
-import { Link } from 'react-scroll';
+import { useState, useMemo, useEffect, useLayoutEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { FiMenu, FiX, FiSun, FiMoon } from 'react-icons/fi';
 import { useTheme } from '../hooks/useTheme.js';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState('home');
   const { theme, toggleTheme } = useTheme();
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+  const desktopNavRef = useRef(null);
+  const navLinkRefs = useRef({});
+  const [indicatorStyle, setIndicatorStyle] = useState({ opacity: 0 });
 
   const navLinks = useMemo(
     () => [
@@ -15,57 +19,155 @@ function Navbar() {
       { id: 'skills', label: 'Skills' },
       { id: 'resume', label: 'Resume' },
       { id: 'projects', label: 'Projects' },
+      // { id: 'portfolio', label: 'Portfolio', to: '/portfolio' },
       { id: 'contact', label: 'Contact' },
     ],
     []
   );
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = navLinks.map((link) => document.getElementById(link.id));
-      const scrollPosition = window.scrollY + 200;
+  const getActiveFromHash = () => {
+    if (location.pathname !== '/') return '';
+    const hash = location.hash.replace('#', '');
+    return navLinks.find((l) => l.id === hash)?.id || 'home';
+  };
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveLink(navLinks[i].id);
-          break;
+  const [activeSection, setActiveSection] = useState(getActiveFromHash);
+
+  useEffect(() => {
+    if (!isHome) return undefined;
+
+    const updateActiveSection = () => {
+      const sectionOffset = 96;
+      let currentSection = 'home';
+
+      for (const id of navLinks.map((link) => link.id)) {
+        const section = document.getElementById(id);
+        if (section && section.getBoundingClientRect().top <= sectionOffset) {
+          currentSection = id;
         }
       }
+
+      setActiveSection((previousSection) =>
+        previousSection === currentSection ? previousSection : currentSection
+      );
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [navLinks]);
+    updateActiveSection();
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    window.addEventListener('resize', updateActiveSection);
+
+    return () => {
+      window.removeEventListener('scroll', updateActiveSection);
+      window.removeEventListener('resize', updateActiveSection);
+    };
+  }, [isHome, navLinks]);
+
+  useLayoutEffect(() => {
+    const activeLink = navLinkRefs.current[
+      navLinks.find((link) => isActive(link))?.id
+    ];
+    const nav = desktopNavRef.current;
+
+    if (!activeLink || !nav) {
+      setIndicatorStyle({ opacity: 0 });
+      return undefined;
+    }
+
+    const updateIndicator = () => {
+      setIndicatorStyle({
+        opacity: 1,
+        width: activeLink.offsetWidth,
+        transform: `translateX(${activeLink.offsetLeft}px)`,
+      });
+    };
+
+    updateIndicator();
+    window.addEventListener('resize', updateIndicator);
+    return () => window.removeEventListener('resize', updateIndicator);
+  }, [activeSection, location.pathname, navLinks]);
+
+  useEffect(() => {
+    setActiveSection(getActiveFromHash());
+  }, [location.hash, location.pathname]);
+
+  const isActive = (link) => {
+    if (link.to) return location.pathname === link.to;
+    if (location.pathname !== '/') return false;
+    return activeSection === link.id;
+  };
+
+  const sectionClass = (link) => {
+    const active = isActive(link);
+    return `font-code text-sm tracking-wide relative inline-block transition-colors duration-300 ${
+      active
+        ? 'text-primary-container font-medium'
+        : 'text-on-surface-variant hover:text-primary-container'
+    }`;
+  };
+
+  const sectionClassMobile = (link) => {
+    const active = isActive(link);
+    return `font-code text-sm tracking-wide relative inline-block self-start transition-colors duration-300 ${
+      active
+        ? 'text-primary-container font-medium'
+        : 'text-on-surface-variant hover:text-primary-container'
+    }`;
+  };
+
+  const closeMenu = () => setIsOpen(false);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-outline-variant/30 bg-surface/60 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-5 md:px-6">
-        <a
-          href="#home"
+        <Link
+          to="/"
           className="font-headline text-xl font-bold tracking-tighter text-on-surface"
         >
           DAVID
-        </a>
+        </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.id}
-              to={link.id}
-              smooth={true}
-              duration={500}
-              spy={true}
-              onSetActive={() => setActiveLink(link.id)}
-              className={`font-code text-sm tracking-wide transition-colors duration-200 cursor-pointer ${
-                activeLink === link.id
-                  ? 'border-b-2 border-primary-container font-bold text-primary-container'
-                  : 'text-on-surface-variant hover:text-primary-container'
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+        <div ref={desktopNavRef} className="relative hidden items-center gap-8 md:flex">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute bottom-0 left-0 h-0.5 rounded-full bg-primary-container transition-[transform,width,opacity] duration-300 ease-out"
+            style={indicatorStyle}
+          />
+          {navLinks.map((link) => {
+            return link.to ? (
+              <Link
+                key={link.id}
+                ref={(element) => {
+                  navLinkRefs.current[link.id] = element;
+                }}
+                to={link.to}
+                className={sectionClass(link)}
+              >
+                <span className="relative z-10">{link.label}</span>
+              </Link>
+            ) : isHome ? (
+              <a
+                key={link.id}
+                ref={(element) => {
+                  navLinkRefs.current[link.id] = element;
+                }}
+                href={`#${link.id}`}
+                className={sectionClass(link)}
+              >
+                <span className="relative z-10">{link.label}</span>
+              </a>
+            ) : (
+              <Link
+                key={link.id}
+                ref={(element) => {
+                  navLinkRefs.current[link.id] = element;
+                }}
+                to={`/#${link.id}`}
+                className={sectionClass(link)}
+              >
+                <span className="relative z-10">{link.label}</span>
+              </Link>
+            );
+          })}
         </div>
 
         <button
@@ -76,15 +178,6 @@ function Navbar() {
         >
           {theme === 'dark' ? <FiSun size={20} /> : <FiMoon size={20} />}
         </button>
-
-        {/* <Link
-          to="resume"
-          smooth={true}
-          duration={500}
-          className="hidden cursor-pointer rounded bg-primary-container px-4 py-2 font-code text-sm font-bold text-on-primary transition-all hover:brightness-110 md:block"
-        >
-          RESUME
-        </Link> */}
 
         <button
           className="text-on-surface md:hidden"
@@ -102,7 +195,7 @@ function Navbar() {
               type="button"
               onClick={() => {
                 toggleTheme();
-                setIsOpen(false);
+                closeMenu();
               }}
               aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
               className="flex items-center gap-2 font-code text-sm text-on-surface transition-colors hover:text-primary-container"
@@ -110,32 +203,43 @@ function Navbar() {
               {theme === 'dark' ? <FiSun size={18} /> : <FiMoon size={18} />}
               {theme === 'dark' ? 'Light mode' : 'Dark mode'}
             </button>
-            {navLinks.map((link) => (
-              <Link
-                key={link.id}
-                to={link.id}
-                smooth={true}
-                duration={500}
-                spy={true}
-                onClick={() => setIsOpen(false)}
-                className={`font-code text-sm tracking-wide transition-colors duration-200 ${
-                  activeLink === link.id
-                    ? 'font-bold text-primary-container'
-                    : 'text-on-surface-variant hover:text-primary-container'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-            {/* <Link
-              to="resume"
-              smooth={true}
-              duration={500}
-              onClick={() => setIsOpen(false)}
-              className="mt-2 rounded bg-primary-container px-4 py-2 text-center font-code text-sm font-bold text-on-primary"
-            >
-              RESUME
-            </Link> */}
+            {navLinks.map((link) => {
+              const active = isActive(link);
+              return link.to ? (
+                <Link key={link.id} to={link.to} onClick={closeMenu} className={sectionClassMobile(link)}>
+                  <span className="relative z-10">{link.label}</span>
+                  <span
+                    className="absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-primary-container transition-all duration-300 ease-out"
+                    style={{
+                      transform: active ? 'scaleX(1)' : 'scaleX(0)',
+                      opacity: active ? 1 : 0,
+                    }}
+                  />
+                </Link>
+              ) : isHome ? (
+                <a key={link.id} href={`#${link.id}`} onClick={closeMenu} className={sectionClassMobile(link)}>
+                  <span className="relative z-10">{link.label}</span>
+                  <span
+                    className="absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-primary-container transition-all duration-300 ease-out"
+                    style={{
+                      transform: active ? 'scaleX(1)' : 'scaleX(0)',
+                      opacity: active ? 1 : 0,
+                    }}
+                  />
+                </a>
+              ) : (
+                <Link key={link.id} to={`/#${link.id}`} onClick={closeMenu} className={sectionClassMobile(link)}>
+                  <span className="relative z-10">{link.label}</span>
+                  <span
+                    className="absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-primary-container transition-all duration-300 ease-out"
+                    style={{
+                      transform: active ? 'scaleX(1)' : 'scaleX(0)',
+                      opacity: active ? 1 : 0,
+                    }}
+                  />
+                </Link>
+              );
+            })}
           </div>
         </div>
       )}

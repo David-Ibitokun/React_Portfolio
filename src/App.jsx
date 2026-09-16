@@ -1,28 +1,35 @@
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Navbar from './components/navbar.jsx';
-import Home from './pages/home.jsx';
+import Index from './pages/Index.jsx';
 import Footer from './components/footer.jsx';
-import About from './pages/about.jsx';
-import Contact from './pages/contact.jsx';
-import Skills from './pages/skills.jsx';
-import Projects from './pages/projects.jsx';
-import Resume from './pages/resume.jsx';
+import ProjectsOverview from './pages/projects-overview.jsx';
 import CursorGlow from './effects/CursorGlow.jsx';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
 
 function App() {
   return (
-    <div className="min-h-screen bg-background text-on-surface grid-pattern">
-      <CursorGlow />
-      <Navbar />
-      <main>
-        <Home />
-        <About />
-        <Skills />
-        <Resume />
-        <Projects />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className="min-h-screen bg-background text-on-surface grid-pattern">
+        <ScrollToTop />
+        <CursorGlow />
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/portfolio" element={<ProjectsOverview />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 

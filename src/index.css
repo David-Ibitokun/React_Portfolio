@@ -103,9 +103,9 @@ html.light {
   --color-surface-tint: #00dbe9;
   --color-primary: #006970;
   --color-on-primary: #ffffff;
-  --color-primary-container: #00f0ff;
+  --color-primary-container: #00849c;
   --color-on-primary-container: #000000;
-  --color-inverse-primary: #00f0ff;
+  --color-inverse-primary: #00849c;
   --color-secondary: #3c475a;
   --color-on-secondary: #ffffff;
   --color-secondary-container: #d8e3fa;
@@ -145,8 +145,8 @@ body {
 }
 
 ::selection {
-  background-color: #00f0ff;
-  color: #000000;
+  background-color: #00849c;
+  color: #ffffff;
 }
 
 .grid-pattern {
