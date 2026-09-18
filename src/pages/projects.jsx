@@ -1,6 +1,7 @@
 import SumiaPreview from '../assets/images/Sumia_Preview.webp';
 import TcnMlpPreview from '../assets/images/TCN_MLP_Preview.webp';
-import { FiCode } from 'react-icons/fi';
+import { FiCode, FiArrowRight } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import AnimatedSection from '../effects/AnimatedSection.jsx';
 import TiltCard from '../effects/TiltCard.jsx';
 
@@ -89,7 +90,13 @@ export default function Projects() {
             </AnimatedSection>
           ))}
         </div>
-        <a className="mt-15 text-sm text-primary-container">View more Projects</a>
+        <Link
+          to="/portfolio"
+          className="group/link mt-5 inline-flex items-center gap-2 rounded-lg border border-outline-variant bg-surface-container-low px-6 py-3 font-code text-sm text-primary-container transition-all duration-300 hover:border-primary-container/50 hover:bg-primary-container/10 hover:shadow-[0_0_20px_rgba(0,240,255,0.15)]"
+        >
+          <span>View more Projects</span>
+          <FiArrowRight size={18} className="transition-transform duration-300 group-hover/link:translate-x-1" />
+        </Link>
       </div>
     </section>
   );

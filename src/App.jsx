@@ -14,11 +14,26 @@ function ScrollToTop() {
   return null;
 }
 
+function ScrollToHash() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) return undefined;
+    const element = document.getElementById(hash.replace('#', ''));
+    if (element) {
+      element.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }
+  }, [hash]);
+
+  return null;
+}
+
 function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-background text-on-surface grid-pattern">
         <ScrollToTop />
+        <ScrollToHash />
         <CursorGlow />
         <Navbar />
         <main>
