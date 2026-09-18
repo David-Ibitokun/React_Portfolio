@@ -35,7 +35,6 @@ export default function Projects() {
             Projects
           </h2>
         </AnimatedSection>
-
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           {projects.map((project, index) => (
             <AnimatedSection key={project.name} animation="fade-up" delay={index * 150}>
@@ -90,6 +89,7 @@ export default function Projects() {
             </AnimatedSection>
           ))}
         </div>
+        <a className="mt-15 text-sm text-primary-container">View more Projects</a>
       </div>
     </section>
   );

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import Navbar from './components/navbar.jsx';
 import Index from './pages/Index.jsx';
 import Footer from './components/footer.jsx';
-import ProjectsOverview from './pages/projects-overview.jsx';
+import ProjectsOverview from './pages/portfolio_page/portfolio-index.jsx';
 import CursorGlow from './effects/CursorGlow.jsx';
 
 function ScrollToTop() {

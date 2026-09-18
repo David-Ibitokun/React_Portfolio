@@ -19,7 +19,7 @@ function Navbar() {
       { id: 'skills', label: 'Skills' },
       { id: 'resume', label: 'Resume' },
       { id: 'projects', label: 'Projects' },
-      // { id: 'portfolio', label: 'Portfolio', to: '/portfolio' },
+      { id: 'portfolio', label: 'Portfolio', to: '/portfolio' },
       { id: 'contact', label: 'Contact' },
     ],
     []
@@ -123,7 +123,7 @@ function Navbar() {
           to="/"
           className="font-headline text-xl font-bold tracking-tighter text-on-surface"
         >
-          DAVID
+          David
         </Link>
 
         <div ref={desktopNavRef} className="relative hidden items-center gap-8 md:flex">
