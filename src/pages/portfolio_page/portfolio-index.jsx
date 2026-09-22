@@ -8,7 +8,7 @@ export default function PortfolioIndex() {
   return (
     <>
       <ProjectsOverview />
-      <Testimonials />
+      {/* <Testimonials /> */}
       {/* <AwardsHackathons />
       <CertificationsCourses />
       <MiniTools /> */}

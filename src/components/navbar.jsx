@@ -19,7 +19,7 @@ function Navbar() {
       { id: 'skills', label: 'Skills' },
       { id: 'resume', label: 'Resume' },
       { id: 'projects', label: 'Projects' },
-      // { id: 'portfolio', label: 'Portfolio', to: '/portfolio' },
+      { id: 'portfolio', label: 'Portfolio', to: '/portfolio' },
       // { id: 'references', label: 'References', to: '/references' },
       { id: 'contact', label: 'Contact' },
     ],
