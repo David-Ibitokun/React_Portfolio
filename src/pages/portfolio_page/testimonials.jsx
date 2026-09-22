@@ -6,12 +6,12 @@ export default function Testimonials() {
   const testimonials = [
     {
       id: 1,
-      quote: 'Ibrahim delivered exceptional work on our customer operations platform, modernizing critical workflows while maintaining system stability.',
+      quote: 'David delivered exceptional work on our customer operations platform, modernizing critical workflows while maintaining system stability.',
       author: 'Senior Product Manager, LeetXender'
     },
     {
       id: 2,
-      quote: 'His ability to optimize complex systems while improving user experience made him a valuable asset to our team.',
+      quote: 'David\'s ability to optimize complex systems while improving user experience made him a valuable asset to our team.',
       author: 'CTO, Smmleet'
     }
   ];
