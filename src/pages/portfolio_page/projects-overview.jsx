@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { FiCode, FiArrowRight } from 'react-icons/fi';
+import { FiExternalLink, FiArrowRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import LeetxenderImg from '../../assets/images/leetxender.webp';
 import SmmleetImg from '../../assets/images/smmleet.webp';
@@ -161,7 +161,7 @@ export default function ProjectsOverview() {
                   <TiltCard>
                     <article className="group h-full overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-low transition-all duration-300 hover:border-primary-container/50 hover:shadow-[0_0_30px_rgba(0,240,255,0.1)] flex flex-col">
                       {/* Image Preview */}
-                      <div className="relative h-48 overflow-hidden border-b border-outline-variant bg-surface-dim">
+                      <div className="relative h-60 overflow-hidden border-b border-outline-variant bg-surface-dim">
                         <img
                           src={project.image}
                           alt={project.title}
@@ -223,12 +223,12 @@ export default function ProjectsOverview() {
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-primary-container font-semibold hover:opacity-70 transition-opacity text-sm"
+                          className="group/link mt-auto inline-flex items-center gap-2 pt-4 font-code text-sm text-primary-container"
                         >
-                          <FiCode size={18} />
+                          <FiExternalLink size={16} />
                           <span className="relative">
                             View Project
-                            <span className="absolute bottom-0 left-0 h-px w-0 bg-primary-container transition-all duration-300 group-hover:w-full" />
+                            <span className="absolute bottom-0 left-0 h-px w-0 bg-primary-container transition-all duration-300 group-hover/link:w-full" />
                           </span>
                         </a>
                       </div>
@@ -252,7 +252,6 @@ export default function ProjectsOverview() {
           )}
         </div>
 
-        {/* View More Link */}
       </div>
     </section>
   );
