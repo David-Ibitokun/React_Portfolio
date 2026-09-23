@@ -1,6 +1,6 @@
 import { FaUserTie } from 'react-icons/fa';
-import AnimatedSection from '../../effects/AnimatedSection.jsx';
-import TiltCard from '../../effects/TiltCard.jsx';
+import AnimatedSection from '../effects/AnimatedSection.jsx';
+import TiltCard from '../effects/TiltCard.jsx';
 
 export default function References() {
   const references = [

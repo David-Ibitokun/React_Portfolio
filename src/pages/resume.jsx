@@ -66,7 +66,7 @@ export default function Resume() {
       <div className="mx-auto max-w-[1200px]">
         <AnimatedSection animation="fade-up" className="mb-12">
           <span className="font-code text-sm text-primary-container">
-            03 // RESUME
+            // RESUME
           </span>
           <h2 className="mt-2 font-headline text-4xl text-on-surface">
             Education and Experiences

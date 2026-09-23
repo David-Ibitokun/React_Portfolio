@@ -3,8 +3,9 @@ import { useEffect } from 'react';
 import Navbar from './components/navbar.jsx';
 import Index from './pages/Index.jsx';
 import Footer from './components/footer.jsx';
-import ProjectsOverview from './pages/portfolio_page/portfolio-index.jsx';
-import References from './pages/portfolio_page/references.jsx';
+import ProjectsOverview from './pages/project_page/projects-index.jsx';
+import ProjectDetail from './pages/project_page/project-detail.jsx';
+import References from './pages/references.jsx';
 import CursorGlow from './effects/CursorGlow.jsx';
 
 function ScrollToTop() {
@@ -40,7 +41,8 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/portfolio" element={<ProjectsOverview />} />
+            <Route path="/projects" element={<ProjectsOverview />} />
+            <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/references" element={<References />} />
           </Routes>
         </main>

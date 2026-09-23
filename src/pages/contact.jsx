@@ -71,7 +71,7 @@ export default function Contact() {
       <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-8 lg:grid-cols-2">
         <AnimatedSection animation="fade-right" className="flex flex-col">
           <span className="font-code text-sm text-primary-container">
-            05 // TRANSMISSION_SIGNAL
+            // TRANSMISSION_SIGNAL
           </span>
           <h2 className="mt-2 font-headline text-4xl text-on-surface">
             Open Channel

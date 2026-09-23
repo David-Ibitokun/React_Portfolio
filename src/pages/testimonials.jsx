@@ -1,6 +1,6 @@
 import { FaQuoteLeft } from 'react-icons/fa';
-import AnimatedSection from '../../effects/AnimatedSection.jsx';
-import TiltCard from '../../effects/TiltCard.jsx';
+import AnimatedSection from '../effects/AnimatedSection.jsx';
+import TiltCard from '../effects/TiltCard.jsx';
 
 export default function Testimonials() {
   const testimonials = [
@@ -17,16 +17,16 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="px-5 md:px-6">
+    <section id="testimonials" className="px-5 py-24 md:px-6">
       <div className="mx-auto max-w-[1200px]">
         <div className="mb-16">
           <AnimatedSection animation="fade-up" className="mb-8">
-            <div className="flex items-center gap-3">
-              <FaQuoteLeft className="text-primary-container" size={24} />
-              <h3 className="font-headline text-2xl text-on-surface">
-                Testimonials
-              </h3>
-            </div>
+            <span className="font-code text-sm text-primary-container">
+              // TESTIMONIALS
+            </span>
+            <h2 className="mt-2 font-headline text-4xl text-on-surface">
+              Testimonials
+            </h2>
           </AnimatedSection>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">

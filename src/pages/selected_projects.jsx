@@ -30,10 +30,10 @@ export default function Projects() {
       <div className="mx-auto max-w-[1200px]">
         <AnimatedSection animation="fade-up" className="mb-8">
           <span className="font-code text-sm text-primary-container">
-            04 // DEPLOYMENTS
+            // DEPLOYMENTS
           </span>
           <h2 className="mt-2 font-headline text-4xl text-on-surface">
-            Projects
+            Selected Projects
           </h2>
         </AnimatedSection>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
@@ -90,11 +90,12 @@ export default function Projects() {
             </AnimatedSection>
           ))}
         </div>
+        {/* Link to Projects Page */}
         {/* <Link
           to="/portfolio"
           className="group/link mt-5 inline-flex items-center gap-2 rounded-lg border border-outline-variant bg-surface-container-low px-6 py-3 font-code text-sm text-primary-container transition-all duration-300 hover:border-primary-container/50 hover:bg-primary-container/10 hover:shadow-[0_0_20px_rgba(0,240,255,0.15)]"
         >
-          <span>View more Projects</span>
+          <span>View More Projects</span>
           <FiArrowRight size={18} className="transition-transform duration-300 group-hover/link:translate-x-1" />
         </Link> */}
       </div>

@@ -26,7 +26,7 @@ export default function Skills() {
       <div className="mx-auto max-w-[1200px]">
         <AnimatedSection animation="fade-up" className="mb-8">
           <span className="font-code text-sm text-primary-container">
-            02 // TECH_STACK
+            // TECH_STACK
           </span>
           <h2 className="mt-2 font-headline text-4xl text-on-surface">
             Core Capabilities
