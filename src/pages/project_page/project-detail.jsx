@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { FiArrowLeft, FiExternalLink, FiCheckCircle } from 'react-icons/fi';
+import { FiArrowLeft, FiExternalLink, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
 import AnimatedSection from '../../effects/AnimatedSection.jsx';
 import LeetxenderImg from '../../assets/images/leetxender.webp';
 import SmmleetImg from '../../assets/images/smmleet.webp';
@@ -13,21 +13,22 @@ const projectData = {
     image: LeetxenderImg,
     link: 'https://leetxender.com',
     highlight: 'Platform modernization & UX redesign',
-    tech: ['Python', 'Django', 'JavaScript', 'AJAX', 'Tailwind CSS', 'Bootstrap'],
+    tech: ['Python', 'Django', 'JavaScript', 'AJAX', 'Tailwind CSS', 'Bootstrap', 'Chart.js', 'CSV'],
     overview:
-      'LeetXender is a comprehensive platform providing competitive programming tools, support infrastructure, and community features. I led the redesign and modernization of core user-facing systems.',
+      'LeetXender is a customer operations platform built on Django, supporting support dashboards, ticketing, chat experiences, analytics, CRM, and internal operations. I spearheaded the modernization of the entire platform, improving usability, mobile accessibility, and cross-team efficiency.',
     roles: [
-      'Frontend Developer — Redesigned UI/UX for support dashboards, ticketing, and chat interfaces',
-      'Full-Stack Engineer — Built AJAX-driven workflows for contact forms, automation pipelines, and campaign management',
-      'Systems Optimizer — Overhauled email/SMS communication systems with improved inbox filtering and validation'
+      'Frontend Developer — Redesigned UI/UX for support dashboards, ticketing, and chat interfaces with responsive Tailwind CSS and Bootstrap patterns',
+      'Full-Stack Engineer — Architected AJAX-driven CRUD, search, sorting, and caching workflows for contacts, automation rules, and campaign management',
+      'Systems Optimizer — Optimized email/SMS communication systems with improved inbox filtering, compose validation, and campaign activity reporting',
+      'Security Engineer — Designed and shipped secure account management flows including password change, account deletion, and profile form validation'
     ],
     contributions: [
-      'Redesigned the support dashboard from the ground up, introducing a modern card-based layout with real-time ticket status tracking, reducing average support response time by ~30%',
-      'Implemented AJAX-driven contact and campaign management workflows, eliminating full-page reloads and improving user engagement',
-      'Built an automated ticket routing system that classifies incoming requests and assigns them to appropriate team members based on tags and priority',
-      'Revamped the internal chat interface with WebSocket-based real-time messaging, typing indicators, and message threading',
-      'Optimized email and SMS communication pipelines by adding inbox filtering, template validation, and delivery tracking',
-      'Introduced responsive design patterns across all portal pages using Tailwind CSS and Bootstrap, ensuring consistent experience across devices'
+      'Spearheaded the modernization of the Django-based customer operations platform by redesigning support dashboards, ticketing flows, chat experiences, and analytics views with responsive Tailwind CSS and Bootstrap patterns, improving usability, mobile accessibility, and cross-team efficiency across support, CRM, and internal operations',
+      'Architected AJAX-driven CRUD, search, sorting, and caching workflows for contacts, automation rules, and campaign management, reducing manual admin work, accelerating data access, and improving operational throughput across high-volume customer communication workflows',
+      'Optimized communication and engagement systems by improving inbox filtering, compose validation, reply/forward handling, and campaign activity reporting across email and SMS channels, increasing data accuracy, reducing user friction, and improving visibility into outbound performance',
+      'Designed and shipped secure account management enhancements, including password change, account deletion, and profile form validation flows, strengthening self-service user controls, reducing support overhead, and improving trust and compliance in authentication workflows',
+      'Built analytics-rich, mobile-first dashboards and global search capabilities using Python, Django, JavaScript, AJAX, Chart.js, and responsive frontend tooling, enabling faster decision-making, better operational insight discovery, and a more scalable user experience for business teams',
+      'Integrated CSV import and data processing workflows for bulk contact and campaign operations'
     ],
     issuesResolved: [
       {
@@ -60,19 +61,18 @@ const projectData = {
     highlight: 'SMS activation & dashboard optimization',
     tech: ['Python', 'Django', 'REST API', 'SQL', 'GrizzlySMS API'],
     overview:
-      'Smmleet is a social media and SMS activation service platform. I built the core SMS workflows, admin tooling, and optimized the database layer for performance.',
+      'Smmleet is an SMS activation and rental service platform. I architected the core SMS workflows, designed REST APIs, optimized database performance, and modernized the entire Django dashboard experience.',
     roles: [
-      'Backend Developer — Designed and implemented Django-based SMS activation workflows with third-party API integration',
-      'API Engineer — Created REST API endpoints for service management and external integrations',
-      'Performance Engineer — Optimized database queries and reduced page load times across the platform'
+      'Backend Developer — Architected Django-based SMS activation and rental workflows via GrizzlySMS API',
+      'API Engineer — Designed REST API endpoints, models, migrations, views, serializers, and admin tooling',
+      'Performance Engineer — Optimized dashboard data access with deferred fields and SQL annotations',
+      'Frontend Developer — Modernized the dashboard with modular templates, dynamic routing, and responsive layouts'
     ],
     contributions: [
-      'Built end-to-end SMS activation workflows integrating the GrizzlySMS API, handling number provisioning, status polling, and result delivery',
-      'Designed REST API endpoints for managing services, orders, and user accounts, enabling external integrations and programmatic access',
-      'Created admin tooling for service management, including bulk operations, service health monitoring, and pricing configuration',
-      'Optimized slow database queries by adding proper indexes, using select_related for foreign key lookups, and implementing query result caching',
-      'Implemented error handling and retry logic for API calls to handle rate limiting and transient failures gracefully',
-      'Built a dashboard analytics module showing real-time activation success rates, revenue metrics, and service availability'
+      'Architected Django-based SMS activation and rental workflows using the GrizzlySMS API, delivering service selection, country availability, status tracking, cancellation, extension, completion, and SMS-code retrieval capabilities',
+      'Designed REST API endpoints, models, migrations, views, serializers, and admin tooling for SMS activations',
+      'Optimized dashboard and announcement data access with deferred fields and SQL annotations, reducing query overhead and page response times',
+      'Modernized the Django dashboard experience by modularizing shared templates, extracting the sidebar, implementing dynamic page routing, improving responsive/mobile layouts, and integrating wallet context across payments and SMS workflows, increasing task completion'
     ],
     issuesResolved: [
       {
@@ -105,19 +105,19 @@ const projectData = {
     highlight: 'ML model achieving R² 0.825 with interpretability',
     tech: ['TensorFlow', 'Keras', 'Streamlit', 'Python', 'Ensemble Modeling'],
     overview:
-      'A machine learning project building crop-climate prediction models for Nigerian agriculture. I engineered TCN-MLP ensemble models, built an interactive Streamlit app, and deployed explainable AI features.',
+      'A climate-informed crop-yield prediction platform covering 4 crops (rice, maize, yam, cassava) across 6 regions of Nigeria. Architected TCN-MLP ensemble models, built a production Streamlit application, and deployed explainable AI features.',
     roles: [
-      'ML Engineer — Designed and trained TCN-MLP ensemble architectures for crop yield prediction',
-      'Application Developer — Built a production Streamlit app with interactive predictions and explainable AI (LOFO)',
-      'Data Engineer — Processed and integrated NASA POWER climate data across 4 crops and 6 Nigerian regions'
+      'ML Engineer — Architected TCN-MLP ensemble architectures with stratified 5-fold cross-validation',
+      'Application Developer — Engineered a production-ready Streamlit app with interactive prediction and model evaluation',
+      'Data Engineer — Integrated NASA POWER climate data and processed agricultural datasets',
+      'ML Researcher — Implemented LOFO explainable AI and climate-impact analysis'
     ],
     contributions: [
-      'Engineered a hybrid TCN-MLP model architecture combining temporal convolutional networks with multi-layer perceptrons, achieving R² 0.825 accuracy on held-out test data',
-      'Built an interactive Streamlit application allowing users to input climate parameters and receive real-time yield predictions with confidence intervals',
-      'Integrated LOFO (Leave-One-Feature-Out) feature importance analysis to make model predictions explainable and actionable for end users',
-      'Processed and cleaned NASA POWER climate dataset spanning multiple years, 4 crop types, and 6 geographic regions in Nigeria',
-      'Implemented an ensemble modeling strategy combining predictions from multiple model variants to improve robustness and reduce variance',
-      'Deployed the application on Streamlit Cloud with proper environment configuration and model serialization'
+      'Architected an end-to-end climate-informed crop-yield prediction platform using TensorFlow/Keras, TCN-MLP architectures, ensemble modeling, and stratified 5-fold cross-validation, improving model generalization and achieving an overall R² of 0.825',
+      'Engineered a production-ready Streamlit application with interactive prediction, data exploration, model evaluation, climate-pattern analysis, and ensemble-interpretability workflows',
+      'Optimized the inference pipeline with cached model and artifact loading, configurable monthly climate sequences, robust validation, and improved error handling, reducing application load and prediction latency',
+      'Implemented explainable AI and climate-impact analysis using Leave-One-Feature-Out (LOFO), enabling stakeholders to interpret key climate drivers and make data-informed decisions',
+      'Spearheaded reproducible data and deployment workflows integrating NASA POWER climate data, processed agricultural datasets, model artifacts, automated reporting, and deployment documentation, supporting operational deployment across 4 crops (rice, maize, yam, cassava) and 6 regions of Nigeria'
     ],
     issuesResolved: [
       {
@@ -222,55 +222,59 @@ export default function ProjectDetail() {
         <AnimatedSection animation="fade-up">
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 font-code text-sm text-primary-container hover:underline mb-8"
+            className="group inline-flex items-center gap-2 font-code text-sm text-primary-container hover:underline mb-8 transition-transform"
           >
-            <FiArrowLeft size={16} />
+            <FiArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
             Back to Projects
           </Link>
         </AnimatedSection>
 
-        {/* Hero */}
-        <AnimatedSection animation="fade-up" className="mb-12">
-          <div className="flex flex-col md:flex-row gap-8 items-start">
-            <div className="w-full md:w-1/2">
-              <div className="relative rounded-2xl overflow-hidden border border-outline-variant bg-surface-dim">
+        {/* Hero Section */}
+        <AnimatedSection animation="fade-up" className="mb-16">
+          <div className="flex flex-col lg:flex-row gap-10 items-center">
+            <div className="w-full lg:w-1/2">
+              <div className="group relative rounded-3xl overflow-hidden border border-outline-variant bg-surface-dim shadow-xl">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-64 object-cover opacity-80"
+                  className="w-full h-72 sm:h-80 object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute top-4 right-4 flex items-center gap-2 rounded border border-outline-variant bg-surface/90 px-3 py-1 font-code text-xs text-primary-container backdrop-blur">
+                <div className="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute top-4 right-4 flex items-center gap-2 rounded-full border border-outline-variant bg-surface/90 px-3.5 py-1.5 font-code text-xs text-primary-container backdrop-blur-md shadow-lg">
                   <div className="h-2 w-2 animate-pulse rounded-full bg-primary-container" />
                   STATUS: DEPLOYED
                 </div>
               </div>
             </div>
-            <div className="w-full md:w-1/2">
-              <h1 className="font-headline text-4xl font-bold text-on-surface leading-tight">
+            
+            <div className="w-full lg:w-1/2 flex flex-col justify-center">
+              <span className="text-xs font-code text-primary-container font-semibold uppercase tracking-wider mb-2">
+                {project.highlight}
+              </span>
+              <h1 className="font-headline text-3xl sm:text-4xl lg:text-5xl font-bold text-on-surface leading-tight">
                 {project.title}
               </h1>
-              <p className="mt-2 text-sm text-primary-container font-semibold uppercase tracking-wide">
-                {project.highlight}
-              </p>
-              <p className="mt-4 text-on-surface-variant leading-relaxed">
+              <p className="mt-4 text-on-surface-variant leading-relaxed text-base sm:text-lg">
                 {project.overview}
               </p>
+              
               <div className="mt-6 flex flex-wrap gap-2">
                 {project.tech.map(tech => (
                   <span
                     key={tech}
-                    className="text-xs font-medium px-3 py-1.5 rounded-lg bg-surface-container-low border border-outline-variant text-on-surface-variant"
+                    className="text-xs font-medium px-3 py-1.5 rounded-lg bg-surface-container-low border border-outline-variant text-on-surface-variant shadow-sm hover:border-primary-container/50 transition-colors"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
-              <div className="mt-6">
+
+              <div className="mt-8">
                 <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-code text-sm text-primary-container"
+                  className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-primary-container/10 border border-primary-container/20 font-code text-sm text-primary-container hover:bg-primary-container/20 transition-all shadow-sm hover:shadow"
                 >
                   <FiExternalLink size={16} />
                   View Live Project
@@ -280,70 +284,76 @@ export default function ProjectDetail() {
           </div>
         </AnimatedSection>
 
-        {/* Roles */}
-        <AnimatedSection animation="fade-up" className="mb-12">
-          <h2 className="font-headline text-2xl font-bold text-on-surface mb-6">
-            Roles
+        {/* Roles Section */}
+        <AnimatedSection animation="fade-up" className="mb-16">
+          <h2 className="font-headline text-2xl font-bold text-on-surface mb-6 flex items-center gap-3">
+            Roles & Responsibilities
           </h2>
-          <div className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {project.roles.map((role, idx) => (
               <div
                 key={idx}
-                className="flex gap-4 p-4 rounded-xl bg-surface-container-low border border-outline-variant"
+                className="flex gap-4 p-5 rounded-2xl bg-surface-container-low border border-outline-variant hover:border-outline transition-all shadow-sm"
               >
-                <span className="text-primary-container font-bold text-lg flex-shrink-0 mt-0.5">
-                  {idx + 1}.
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary-container/10 text-primary-container font-code font-bold text-sm">
+                  0{idx + 1}
                 </span>
-                <p className="text-on-surface-variant leading-relaxed">{role}</p>
+                <p className="text-on-surface-variant text-sm leading-relaxed">{role}</p>
               </div>
             ))}
           </div>
         </AnimatedSection>
 
-        {/* Contributions */}
-        <AnimatedSection animation="fade-up" className="mb-12">
-          <h2 className="font-headline text-2xl font-bold text-on-surface mb-6">
-            Contributions
+        {/* Contributions Section */}
+        <AnimatedSection animation="fade-up" className="mb-16">
+          <h2 className="font-headline text-2xl font-bold text-on-surface mb-6 flex items-center gap-3">
+            Key Contributions
           </h2>
           <div className="space-y-4">
             {project.contributions.map((contribution, idx) => (
               <div
                 key={idx}
-                className="flex gap-4 p-4 rounded-xl bg-surface-container-low border border-outline-variant"
+                className="flex gap-4 p-5 rounded-2xl bg-surface-container-low border border-outline-variant hover:border-outline transition-all shadow-sm"
               >
-                <FiCheckCircle className="text-primary-container flex-shrink-0 mt-1" size={20} />
-                <p className="text-on-surface-variant leading-relaxed">{contribution}</p>
+                <FiCheckCircle className="text-primary-container shrink-0 mt-1" size={20} />
+                <p className="text-on-surface-variant text-sm sm:text-base leading-relaxed">{contribution}</p>
               </div>
             ))}
           </div>
         </AnimatedSection>
 
-        {/* Issues Resolved */}
-        <AnimatedSection animation="fade-up" className="mb-12">
-          <h2 className="font-headline text-2xl font-bold text-on-surface mb-6">
-            Issues Resolved
+        {/* Issues Resolved Section */}
+        <AnimatedSection animation="fade-up" className="mb-16">
+          <h2 className="font-headline text-2xl font-bold text-on-surface mb-6 flex items-center gap-3">
+            Issues Resolved & Engineering Decisions
           </h2>
           <div className="space-y-6">
             {project.issuesResolved.map((item, idx) => (
               <div
                 key={idx}
-                className="rounded-xl bg-surface-container-low border border-outline-variant overflow-hidden"
+                className="rounded-2xl bg-surface-container-low border border-outline-variant overflow-hidden shadow-sm"
               >
-                <div className="p-5 border-b border-outline-variant/40 bg-surface-dim/50">
-                  <h3 className="font-headline text-base font-bold text-on-surface mb-1">
-                    Issue
-                  </h3>
-                  <p className="text-on-surface-variant text-sm leading-relaxed">
-                    {item.issue}
-                  </p>
+                <div className="p-5 sm:p-6 border-b border-outline-variant/40 bg-surface-dim/40 flex gap-4 items-start">
+                  <FiAlertCircle className="text-amber-500 shrink-0 mt-1" size={20} />
+                  <div>
+                    <h3 className="font-headline text-xs font-bold text-amber-500 uppercase tracking-wider mb-1">
+                      Challenge / Issue
+                    </h3>
+                    <p className="text-on-surface text-sm sm:text-base leading-relaxed font-medium">
+                      {item.issue}
+                    </p>
+                  </div>
                 </div>
-                <div className="p-5 bg-primary-container/5">
-                  <h3 className="font-headline text-base font-bold text-primary-container mb-1">
-                    Resolution
-                  </h3>
-                  <p className="text-on-surface-variant text-sm leading-relaxed">
-                    {item.resolution}
-                  </p>
+                <div className="p-5 sm:p-6 bg-primary-container/5 flex gap-4 items-start">
+                  <FiCheckCircle className="text-primary-container shrink-0 mt-1" size={20} />
+                  <div>
+                    <h3 className="font-headline text-xs font-bold text-primary-container uppercase tracking-wider mb-1">
+                      Solution & Impact
+                    </h3>
+                    <p className="text-on-surface-variant text-sm sm:text-base leading-relaxed">
+                      {item.resolution}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -351,13 +361,13 @@ export default function ProjectDetail() {
         </AnimatedSection>
 
         {/* Bottom CTA */}
-        <AnimatedSection animation="fade-up" className="mt-16 text-center">
-          <p className="text-on-surface-variant mb-4">
-            Interested in learning more?
+        <AnimatedSection animation="fade-up" className="mt-20 text-center border-t border-outline-variant/50 pt-10">
+          <p className="text-on-surface-variant mb-4 text-sm sm:text-base">
+            Interested in exploring other pieces of work?
           </p>
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 font-code text-sm text-primary-container hover:underline"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-surface-container-low border border-outline-variant font-code text-sm text-on-surface hover:bg-surface-dim transition-all shadow-sm"
           >
             <FiArrowLeft size={16} />
             Back to All Projects

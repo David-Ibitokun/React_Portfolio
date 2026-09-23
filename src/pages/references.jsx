@@ -37,6 +37,7 @@ export default function References() {
     <section id="references" className="px-5 py-24 md:px-6">
       <div className="mx-auto max-w-[1200px]">
         <AnimatedSection animation="fade-up" className="mb-16">
+          <p>Dummy Page</p>
           <span className="font-code text-xs text-primary-container uppercase tracking-widest">
             // References
           </span>

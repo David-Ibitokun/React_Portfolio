@@ -18,10 +18,10 @@ function Navbar() {
       { id: 'about', label: 'About' },
       { id: 'skills', label: 'Skills' },
       { id: 'resume', label: 'Resume' },
-      // { id: 'projects', label: 'Projects', to: '/projects' },
+      { id: 'projects', label: 'Projects', to: '/projects' },
       // { id: 'selected_projects', label: 'Selected_Projects' },
       // { id: 'testimonials', label: 'Testimonials' },
-      // { id: 'references', label: 'References' },
+      { id: 'references', label: 'References' },
       { id: 'contact', label: 'Contact' },
     ],
     []
