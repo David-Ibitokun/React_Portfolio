@@ -3,8 +3,18 @@ import AnimatedSection from '../effects/AnimatedSection.jsx';
 import TiltCard from '../effects/TiltCard.jsx';
 import TextScramble from '../effects/TextScramble.jsx';
 import FloatingElement from '../effects/FloatingElement.jsx';
+import { FaWhatsapp } from 'react-icons/fa';
+import { FiArrowUpRight } from 'react-icons/fi';
 
 export default function Home() {
+  const whatsappNumber = (import.meta.env.VITE_WHATSAPP_NUMBER || '').replace(/\D/g, '');
+  const whatsappMessage = encodeURIComponent(
+    'Hello David, I found your portfolio and would like to connect.'
+  );
+  const whatsappUrl = whatsappNumber
+    ? `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`
+    : `https://wa.me/?text=${whatsappMessage}`;
+
   return (
     <section
       id="home"
@@ -37,9 +47,31 @@ export default function Home() {
           </h2>
 
           <p className="max-w-2xl text-lg text-on-surface-variant">
-            I enjoy turning ideas into real, functional web applications,
-            combining creativity with clean, efficient code.
+            I’m a backend-focused web developer who turns ideas into real,
+            functional web applications with clean, efficient code. I build
+            responsive interfaces in React and robust systems with Django.
           </p>
+
+          <div className="grid max-w-2xl grid-cols-1 gap-3 border-y border-outline-variant/50 py-4 text-sm sm:grid-cols-3 sm:gap-5">
+            <div>
+              <span className="block font-code text-[10px] uppercase tracking-wider text-primary-container">
+                Focus
+              </span>
+              <span className="mt-1 block text-on-surface-variant">Robust APIs</span>
+            </div>
+            <div>
+              <span className="block font-code text-[10px] uppercase tracking-wider text-primary-container">
+                Stack
+              </span>
+              <span className="mt-1 block text-on-surface-variant">Django / React / Python</span>
+            </div>
+            <div>
+              <span className="block font-code text-[10px] uppercase tracking-wider text-primary-container">
+                Status
+              </span>
+              <span className="mt-1 block text-on-surface-variant">Open to opportunities</span>
+            </div>
+          </div>
 
           <div className="mt-6 flex flex-col gap-4 sm:flex-row">
             <a
@@ -56,6 +88,23 @@ export default function Home() {
               VIEW_PROJECTS
             </a>
           </div>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open WhatsApp to message David"
+              className="group mt-2 inline-flex w-fit items-center gap-3 rounded-lg border border-[#25D366]/40 bg-[#25D366]/10 px-4 py-3 text-sm text-on-surface transition-all hover:border-[#25D366] hover:bg-[#25D366]/15 hover:shadow-[0_0_18px_rgba(37,211,102,0.18)]"
+            >
+              <FaWhatsapp size={21} className="text-[#25D366] transition-transform group-hover:scale-110" />
+              <span>
+                <span className="block font-semibold">Message me on WhatsApp</span>
+                <span className="mt-0.5 block text-xs text-on-surface-variant">
+                  Let’s talk about your next idea
+                </span>
+              </span>
+              <FiArrowUpRight size={17} className="ml-1 text-[#25D366] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+
         </AnimatedSection>
 
         <div className="relative flex justify-center md:col-span-5 md:justify-end">

@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import Swal from 'sweetalert2';
 import { FiMail, FiMapPin } from 'react-icons/fi';
+import { FaWhatsapp } from 'react-icons/fa';
 import AnimatedSection from '../effects/AnimatedSection.jsx';
 import TiltCard from '../effects/TiltCard.jsx';
 
@@ -16,6 +17,10 @@ function getSwalTheme() {
 export default function Contact() {
   const form = useRef();
   const [isSending, setIsSending] = useState(false);
+  const whatsappNumber = (import.meta.env.VITE_WHATSAPP_NUMBER || '').replace(/\D/g, '');
+  const whatsappUrl = whatsappNumber
+    ? `https://wa.me/${whatsappNumber}`
+    : 'https://wa.me/?text=Hello%20David%2C%20I%20would%20like%20to%20connect.';
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -90,6 +95,15 @@ export default function Contact() {
             >
               <FiMail size={20} className="text-primary-container transition-transform group-hover:scale-110" />
               ibitokunmoro3@gmail.com
+            </a>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-3 text-on-surface-variant transition-colors hover:text-primary-container"
+            >
+              <FaWhatsapp size={20} className="text-primary-container transition-transform group-hover:scale-110" />
+              Chat on WhatsApp
             </a>
             <div className="group flex items-center gap-3 text-on-surface-variant">
               <FiMapPin size={20} className="text-primary-container transition-transform group-hover:scale-110" />

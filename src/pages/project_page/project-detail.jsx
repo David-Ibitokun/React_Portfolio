@@ -1,16 +1,26 @@
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { FiArrowLeft, FiExternalLink, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
+import { FiArrowLeft, FiExternalLink, FiCheckCircle, FiAlertCircle, FiImage, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import AnimatedSection from '../../effects/AnimatedSection.jsx';
 import LeetxenderImg from '../../assets/images/leetxender.webp';
+import LeetxenderLoginImg from '../../assets/images/leetxender/leetxender-login.webp';
+import LeetxenderRegisterImg from '../../assets/images/leetxender/leetxender-register.webp';
 import SmmleetImg from '../../assets/images/smmleet.webp';
+import SmmleetLoginImg from '../../assets/images/smmleet/smmleet-login.webp';
+import SmmleetRegisterImg from '../../assets/images/smmleet/smmleet-register.webp';
 import TcnMlpImg from '../../assets/images/TCN_MLP_Preview.webp';
+import TcnMlpInputImg from '../../assets/images/tcn-mlp/tcn-mlp-input-page.webp';
+import TcnMlpResultImg from '../../assets/images/tcn-mlp/tcn-mlp-result-page.webp';
 import EcommerceImg from '../../assets/images/Sumia_Preview.webp';
+import EcommerceLoginImg from '../../assets/images/sumia/Sumia-login.webp';
+import EcommerceRegisterImg from '../../assets/images/sumia/Sumia-register.webp';
 
 const projectData = {
   '1': {
     id: '1',
     title: 'LeetXender Platform',
     image: LeetxenderImg,
+    gallery: [LeetxenderImg, LeetxenderLoginImg, LeetxenderRegisterImg],
     link: 'https://leetxender.com',
     highlight: 'Platform modernization & UX redesign',
     tech: ['Python', 'Django', 'JavaScript', 'AJAX', 'Tailwind CSS', 'Bootstrap', 'Chart.js', 'CSV'],
@@ -57,6 +67,7 @@ const projectData = {
     id: '2',
     title: 'Smmleet',
     image: SmmleetImg,
+    gallery: [SmmleetImg, SmmleetLoginImg, SmmleetRegisterImg],
     link: 'https://smmleet.com',
     highlight: 'SMS activation & dashboard optimization',
     tech: ['Python', 'Django', 'REST API', 'SQL', 'GrizzlySMS API'],
@@ -101,6 +112,7 @@ const projectData = {
     id: '3',
     title: 'AI Crop-Climate Prediction',
     image: TcnMlpImg,
+    gallery: [TcnMlpImg, TcnMlpInputImg, TcnMlpResultImg],
     link: 'https://nig-climate-with-dl.streamlit.app/',
     highlight: 'ML model achieving R² 0.825 with interpretability',
     tech: ['TensorFlow', 'Keras', 'Streamlit', 'Python', 'Ensemble Modeling'],
@@ -146,6 +158,7 @@ const projectData = {
     id: '4',
     title: 'E-commerce Dashboard',
     image: EcommerceImg,
+    gallery: [EcommerceImg, EcommerceLoginImg, EcommerceRegisterImg],
     link: 'https://davidibitokun.pythonanywhere.com/',
     highlight: 'Full-stack web application',
     tech: ['Django', 'React', 'SQL'],
@@ -192,6 +205,36 @@ const projectData = {
 export default function ProjectDetail() {
   const { id } = useParams();
   const project = projectData[id];
+  const [activeImage, setActiveImage] = useState(0);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+
+  const closeGallery = () => setIsGalleryOpen(false);
+
+  const showPreviousImage = () => {
+    setActiveImage((current) => (current - 1 + project.gallery.length) % project.gallery.length);
+  };
+
+  const showNextImage = () => {
+    setActiveImage((current) => (current + 1) % project.gallery.length);
+  };
+
+  useEffect(() => {
+    if (!isGalleryOpen) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') closeGallery();
+      if (event.key === 'ArrowLeft') showPreviousImage();
+      if (event.key === 'ArrowRight') showNextImage();
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isGalleryOpen]);
 
   if (!project) {
     return (
@@ -283,6 +326,132 @@ export default function ProjectDetail() {
             </div>
           </div>
         </AnimatedSection>
+
+        {/* Project Gallery */}
+        <AnimatedSection animation="fade-up" className="mb-16" id="project-gallery">
+          <div className="mb-6 flex items-center gap-3">
+            <FiImage className="text-primary-container" size={22} />
+            <h2 className="font-headline text-2xl font-bold text-on-surface">
+              Project Gallery
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.35fr_0.65fr]">
+            <div>
+              <button
+                type="button"
+                onClick={() => setIsGalleryOpen(true)}
+                className="group relative block w-full overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-low text-left"
+                aria-label={`Open ${project.title} gallery in full view`}
+              >
+                <div className="aspect-[16/9] overflow-hidden bg-surface-dim">
+                  <img
+                    src={project.gallery[activeImage]}
+                    alt={`${project.title} screenshot ${activeImage + 1}`}
+                    className="h-full w-full object-cover opacity-85 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+                  />
+                </div>
+                <span className="absolute bottom-4 right-4 rounded-lg border border-outline-variant bg-surface/90 px-3 py-2 font-code text-xs text-primary-container backdrop-blur">
+                  Open full view
+                </span>
+              </button>
+              <div className="mt-3 grid grid-cols-3 gap-3">
+                {project.gallery.map((image, index) => (
+                  <button
+                    key={image}
+                    type="button"
+                    onClick={() => setActiveImage(index)}
+                    className={`aspect-[16/10] overflow-hidden rounded-lg border bg-surface-dim transition ${
+                      activeImage === index
+                        ? 'border-primary-container shadow-[0_0_12px_rgba(0,240,255,0.18)]'
+                        : 'border-outline-variant opacity-65 hover:border-primary-container/60 hover:opacity-100'
+                    }`}
+                    aria-label={`Show screenshot ${index + 1}`}
+                    aria-pressed={activeImage === index}
+                  >
+                    <img
+                      src={image}
+                      alt=""
+                      aria-hidden="true"
+                      className="h-full w-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+              <p className="mt-3 font-code text-xs text-on-surface-variant">
+                {project.title} / screenshot {activeImage + 1} of {project.gallery.length}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-outline-variant bg-surface-container-low p-6">
+              <p className="font-code text-xs uppercase tracking-wider text-primary-container">
+                Project snapshot
+              </p>
+              <h3 className="mt-3 font-headline text-xl font-bold text-on-surface">
+                {project.highlight}
+              </h3>
+              <p className="mt-4 text-sm leading-relaxed text-on-surface-variant">
+                {project.overview}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {project.tech.map((tech) => (
+                  <span
+                    key={tech}
+                    className="rounded-lg border border-outline-variant bg-surface-dim px-3 py-1.5 text-xs text-on-surface-variant"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {isGalleryOpen && (
+          <div
+            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm sm:p-8"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${project.title} gallery full view`}
+            onClick={closeGallery}
+          >
+            <div
+              className="relative flex h-full w-full max-w-6xl items-center justify-center"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <img
+                src={project.gallery[activeImage]}
+                alt={`${project.title} screenshot ${activeImage + 1}`}
+                className="max-h-[85vh] max-w-full rounded-xl border border-outline-variant object-contain shadow-2xl"
+              />
+              <button
+                type="button"
+                onClick={closeGallery}
+                aria-label="Close full view"
+                className="absolute right-0 top-0 rounded-full border border-outline-variant bg-surface-container-high p-3 text-on-surface transition hover:border-primary-container hover:text-primary-container"
+              >
+                <FiX size={22} />
+              </button>
+              <button
+                type="button"
+                onClick={showPreviousImage}
+                aria-label="Show previous screenshot"
+                className="absolute left-0 rounded-full border border-outline-variant bg-surface-container-high p-3 text-on-surface transition hover:border-primary-container hover:text-primary-container sm:left-4"
+              >
+                <FiChevronLeft size={24} />
+              </button>
+              <button
+                type="button"
+                onClick={showNextImage}
+                aria-label="Show next screenshot"
+                className="absolute right-0 rounded-full border border-outline-variant bg-surface-container-high p-3 text-on-surface transition hover:border-primary-container hover:text-primary-container sm:right-4"
+              >
+                <FiChevronRight size={24} />
+              </button>
+              <span className="absolute bottom-0 rounded-full border border-outline-variant bg-surface-container-high px-4 py-2 font-code text-xs text-on-surface-variant">
+                {activeImage + 1} / {project.gallery.length}
+              </span>
+            </div>
+          </div>
+        )}
 
         {/* Roles Section */}
         <AnimatedSection animation="fade-up" className="mb-16">
