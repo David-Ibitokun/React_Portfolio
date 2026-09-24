@@ -49,16 +49,16 @@ export default function Home() {
           <p className="max-w-2xl text-lg text-on-surface-variant">
             I’m a backend-focused web developer who turns ideas into real,
             functional web applications with clean, efficient code. I build
-            responsive interfaces in React and robust systems with Django.
+            responsive interfaces in React and systems with Django.
           </p>
 
           <div className="grid max-w-2xl grid-cols-1 gap-3 border-y border-outline-variant/50 py-4 text-sm sm:grid-cols-3 sm:gap-5">
-            <div>
+            {/* <div>
               <span className="block font-code text-[10px] uppercase tracking-wider text-primary-container">
                 Focus
               </span>
               <span className="mt-1 block text-on-surface-variant">Robust APIs</span>
-            </div>
+            </div> */}
             <div>
               <span className="block font-code text-[10px] uppercase tracking-wider text-primary-container">
                 Stack
