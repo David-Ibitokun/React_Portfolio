@@ -21,7 +21,7 @@ function Navbar() {
       { id: 'projects', label: 'Projects', to: '/projects' },
       // { id: 'selected_projects', label: 'Selected_Projects' },
       // { id: 'testimonials', label: 'Testimonials' },
-      { id: 'references', label: 'References' },
+      // { id: 'references', label: 'References' },
       { id: 'contact', label: 'Contact' },
     ],
     []

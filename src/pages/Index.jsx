@@ -5,7 +5,7 @@ import Resume from './resume';
 import Projects from './selected_projects.jsx';
 import Testimonials from './testimonials.jsx';
 import Contact from './contact';
-import References from './references.jsx'
+// import References from './references.jsx'
 
 export default function Index() {
   return (
@@ -16,7 +16,7 @@ export default function Index() {
       <Resume />
       <Projects />
       {/* <Testimonials /> */}
-      <References />
+      {/* <References /> */}
       <Contact />
     </>
   );

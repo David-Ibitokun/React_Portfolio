@@ -5,7 +5,7 @@ import Index from './pages/Index.jsx';
 import Footer from './components/footer.jsx';
 import ProjectsOverview from './pages/project_page/projects-index.jsx';
 import ProjectDetail from './pages/project_page/project-detail.jsx';
-import References from './pages/references.jsx';
+// import References from './pages/references.jsx';
 import CursorGlow from './effects/CursorGlow.jsx';
 
 function ScrollToTop() {
@@ -43,7 +43,7 @@ function App() {
             <Route path="/" element={<Index />} />
             <Route path="/projects" element={<ProjectsOverview />} />
             <Route path="/projects/:id" element={<ProjectDetail />} />
-            <Route path="/references" element={<References />} />
+            {/* <Route path="/references" element={<References />} /> */}
           </Routes>
         </main>
         <Footer />
